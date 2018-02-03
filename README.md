@@ -6,6 +6,6 @@
 4. Running Jar: `java -jar /path/to/jarfile.jar`
 
 ### Note:
-While developement we will use Step 2 to check the output,
+While development we will use Step 2 to check the output,
 
 We need to generate a jar and upload it to server for production purpose then Follow Step 3 & 4
