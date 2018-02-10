@@ -15,6 +15,8 @@ public class User {
 
     private String place;
 
+    private String password;
+
     public long getId() {
         return id;
     }
@@ -45,5 +47,13 @@ public class User {
 
     public void setPlace(String place) {
         this.place = place;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

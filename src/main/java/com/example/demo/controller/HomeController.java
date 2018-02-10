@@ -6,11 +6,9 @@ import com.example.demo.response.BaseResponse;
 import com.example.demo.response.UserListResponse;
 import com.example.demo.response.sub.UserListItem;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +24,18 @@ public class HomeController {
         BaseResponse response = new BaseResponse();
         response.setStatus(1);
         response.setMessage("Hello World");
+        return response;
+    }
+
+    @GetMapping("/register")
+    public @ResponseBody BaseResponse register (@RequestParam("name") String name, @RequestParam("password") String password) {
+        BaseResponse response = new BaseResponse();
+        User user = new User();
+        user.setName(name);
+        user.setPassword(password);
+        userRepository.save(user);
+        response.setStatus(1);
+        response.setMessage("Registered Successfully");
         return response;
     }
 
