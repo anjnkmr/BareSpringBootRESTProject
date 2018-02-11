@@ -6,6 +6,8 @@ import com.example.demo.response.BaseResponse;
 import com.example.demo.response.UserListResponse;
 import com.example.demo.response.sub.UserListItem;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -55,6 +57,17 @@ public class HomeController {
         }
         response.setUsers(userListItems);
         return response;
+    }
+
+    @GetMapping("/info")
+    public @ResponseBody User info () {
+        if (SecurityContextHolder.getContext() != null)
+        if (SecurityContextHolder.getContext().getAuthentication() != null) {
+            String userName = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+            User user = userRepository.findByName(userName);
+            return user;
+        }
+        return new User();
     }
 
 }
